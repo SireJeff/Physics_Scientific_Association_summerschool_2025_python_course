@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}Matrix Calculator{% endblock %}
+{% block content %}
+    <h2>Matrix Calculator</h2>
+    <p>Enter a square matrix with numbers separated by spaces and rows by new lines.</p>
+    <form method="post">
+        <textarea name="matrix_data" placeholder="e.g.&#10;1 2&#10;3 4">{{ matrix_input }}</textarea>
+        <br>
+        <button type="submit">Calculate</button>
+    </form>
+    
+    {% if error %}
+        <div class="result">
+            <p class="error">{{ error }}</p>
+        </div>
+    {% elif results %}
+        <div class="result">
+            <h3>Results:</h3>
+            <p><strong>Determinant:</strong> {{ results.determinant | round(4) }}</p>
+            <div>
+                <strong>Transpose:</strong>
+                <pre>{{ results.transpose }}</pre>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

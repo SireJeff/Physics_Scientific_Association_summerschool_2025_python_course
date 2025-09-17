@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}Data Plotter{% endblock %}
+{% block content %}
+    <h2>Data Plotter</h2>
+    <p>Enter two columns of data (X and Y values) with numbers separated by spaces and rows by new lines.</p>
+    <form method="post">
+        <textarea name="plot_data" placeholder="e.g.&#10;1 1&#10;2 4&#10;3 9">{{ plot_data_input }}</textarea>
+        <br>
+        <button type="submit">Generate Plot</button>
+    </form>
+    
+    {% if error %}
+        <div class="result">
+            <p class="error">{{ error }}</p>
+        </div>
+    {% elif plot_url %}
+        <div class="result">
+            <h3>Generated Plot:</h3>
+            <img src="data:image/png;base64,{{ plot_url }}" alt="Data Plot">
+        </div>
+    {% endif %}
+{% endblock %}
